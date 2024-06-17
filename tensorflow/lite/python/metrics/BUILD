@@ -61,7 +61,7 @@ pytype_strict_library(
     srcs_version = "PY3",
     deps = [
         ":_pywrap_tensorflow_lite_metrics_wrapper",
-        ":converter_error_data_proto_py",
+        "//tensorflow/compiler/mlir/lite/metrics:converter_error_data_proto_py",
         "//tensorflow/compiler/mlir/lite/python:wrap_converter",
     ],
 )
@@ -111,7 +111,7 @@ pytype_strict_library(
     visibility = ["//tensorflow/lite:__subpackages__"],
     deps = if_portable(
         if_false = [
-            ":converter_error_data_proto_py",
+            "//tensorflow/compiler/mlir/lite/metrics:converter_error_data_proto_py",
             ":metrics_wrapper",
             "//tensorflow/python/eager:monitoring",
         ],
@@ -134,12 +134,12 @@ py_strict_test(
     ),
     python_version = "PY3",
     deps = [
-        ":converter_error_data_proto_py",
         ":metrics",
         "@absl_py//absl/testing:parameterized",
         #internal proto upb dep
         "//third_party/py/numpy",
         "//tensorflow:tensorflow_py",
+        "//tensorflow/compiler/mlir/lite/metrics:converter_error_data_proto_py",
         "//tensorflow/core:protos_all_py",
         "//tensorflow/lite/python:convert",
         "//tensorflow/lite/python:lite",
@@ -165,7 +165,7 @@ py_strict_test(
 
 tf_proto_library(
     name = "converter_error_data_proto",
-    srcs = ["converter_error_data.proto"],
+    srcs = ["third_party/tensorflow/compiler/mlir/lite/metrics/converter_error_data.proto"],
     cc_api_version = 2,
 )
 
